@@ -1,0 +1,15 @@
+question,expected_doc,expected_fact,answerable
+What refund is available for late delivery?,refund_policy.txt,longer than 45 minutes,True
+"What should happen when a refund exceeds INR 1,000?",refund_policy.txt,human escalation,True
+What is the rule for delivery delays?,delivery_policy.txt,above 45 minutes,True
+How do we handle privacy in ticket processing?,privacy_policy.txt,redacted before being sent,True
+What is the payment refund rule?,payment_policy.txt,original payment method,True
+Who gets routed to the premium desk?,escalation_policy.txt,Premium customers,True
+What happens to fraudulent tickets?,escalation_policy.txt,security team,True
+Is there a rule about order cancellations?,delivery_policy.txt,cancelled orders are excluded,True
+Does the policy mention the seven-day refund window?,refund_policy.txt,7 calendar days,True
+What should happen for empty ticket content?,escalation_policy.txt,Human intervention,True
+Is an email address allowed to be sent to the model?,privacy_policy.txt,must never receive email addresses,True
+What is the rule for refunds of 45 minutes or less?,refund_policy.txt,receives no refund,True
+What is the capital of India?,unknown,,False
+How should I bake a cake?,unknown,,False

@@ -1,0 +1,2 @@
+ticket_id,customer_id,status,category,segment_name,priority,route,tokens_used
+TK-001,C0001,budget_exhausted,,,NORMAL,human_review,0

@@ -1,0 +1,5 @@
+Payment Policy
+1. All amounts are shown in INR.
+2. Payment methods include UPI, card and wallet.
+3. Refunds are returned to the original payment method.
+4. Large refunds above INR 1,000 need manual review.

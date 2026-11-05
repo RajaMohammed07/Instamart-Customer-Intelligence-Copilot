@@ -1,0 +1,21 @@
+{
+  "run_id": "S6-1793868689",
+  "scenario_id": "S6",
+  "messages": [
+    {
+      "role": "system",
+      "content": "AGENT: You are a careful refund assistant. Use tools when needed."
+    },
+    {
+      "role": "user",
+      "content": "I expect a refund for a late delivery."
+    },
+    {
+      "role": "assistant",
+      "content": "{\"category\": \"billing\", \"reason\": \"Customer is asking about a payment or billing issue.\"}"
+    }
+  ],
+  "tokens_used": 19,
+  "step": 1,
+  "tools_done": []
+}

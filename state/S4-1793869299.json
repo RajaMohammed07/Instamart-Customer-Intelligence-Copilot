@@ -1,0 +1,26 @@
+{
+  "run_id": "S4-1793869299",
+  "scenario_id": "S4",
+  "messages": [
+    {
+      "role": "system",
+      "content": "AGENT: You are a careful refund assistant. Use tools when needed."
+    },
+    {
+      "role": "user",
+      "content": "I need a refund for a missing order."
+    },
+    {
+      "role": "tool",
+      "content": "{\"refund_inr\": 3499.16}"
+    }
+  ],
+  "tokens_used": 45,
+  "step": 3,
+  "tools_done": [
+    "get_order",
+    "search_policy",
+    "calculate_refund",
+    "escalate_to_human"
+  ]
+}

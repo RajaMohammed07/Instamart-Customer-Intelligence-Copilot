@@ -1,0 +1,165 @@
+ticket_id,customer_id,text,true_category,created_at
+TK-001,C0001,"I need help with my order, please contact me at test@example.com or 9876543210.",billing,2025-01-01 00:00:00
+TK-002,C0002,My package arrived three days late and has not been delivered.,delivery,2025-01-02 00:00:00
+TK-003,C0003,The app crashes whenever I try to view my order details.,technical,2025-01-03 00:00:00
+TK-004,C0004,I see an unusual duplicate charge on my account.,fraud,2025-01-04 00:00:00
+TK-005,C0005,Order ORD-123456 was delivered but no refund appears.,billing,2025-01-05 00:00:00
+TK-006,C0006,Delivery is delayed and the estimate is wrong.,delivery,2025-01-06 00:00:00
+TK-007,C0007,I cannot log in because the app is throwing an error.,technical,2025-01-07 00:00:00
+TK-008,C0008,Someone used my account to make a purchase and I need help.,fraud,2025-01-08 00:00:00
+TK-009,C0009,Refund not showing on my card after a recent order.,billing,2025-01-09 00:00:00
+TK-010,C0010,My package arrived three days late and has not been delivered.,delivery,2025-01-10 00:00:00
+TK-011,C0011,The app crashes whenever I try to view my order details.,technical,2025-01-11 00:00:00
+TK-012,C0012,,fraud,2025-01-12 00:00:00
+TK-013,C0013,Order ORD-123456 was delivered but no refund appears.,billing,2025-01-13 00:00:00
+TK-014,C0014,Delivery is delayed and the estimate is wrong.,delivery,2025-01-14 00:00:00
+TK-015,C0015,I cannot log in because the app is throwing an error.,technical,2025-01-15 00:00:00
+TK-016,C0016,Someone used my account to make a purchase and I need help.,fraud,2025-01-16 00:00:00
+TK-017,C0017,Refund not showing on my card after a recent order.,billing,2025-01-17 00:00:00
+TK-018,C0018,word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word,delivery,2025-01-18 00:00:00
+TK-019,C0019,The app crashes whenever I try to view my order details.,technical,2025-01-19 00:00:00
+TK-020,C0020,I see an unusual duplicate charge on my account.,fraud,2025-01-20 00:00:00
+TK-021,C0021,Order ORD-123456 was delivered but no refund appears.,billing,2025-01-21 00:00:00
+TK-022,C0022,Delivery is delayed and the estimate is wrong.,delivery,2025-01-22 00:00:00
+TK-023,C0023,,technical,2025-01-23 00:00:00
+TK-024,C0024,Someone used my account to make a purchase and I need help.,fraud,2025-01-24 00:00:00
+TK-025,C0025,Refund not showing on my card after a recent order.,billing,2025-01-25 00:00:00
+TK-026,C0026,My package arrived three days late and has not been delivered.,delivery,2025-01-26 00:00:00
+TK-027,C0027,The app crashes whenever I try to view my order details.,technical,2025-01-27 00:00:00
+TK-028,C0028,I see an unusual duplicate charge on my account.,fraud,2025-01-28 00:00:00
+TK-029,C0029,Order ORD-123456 was delivered but no refund appears.,billing,2025-01-29 00:00:00
+TK-030,C0030,"I need help with my order, please contact me at test@example.com or 9876543210.",delivery,2025-01-30 00:00:00
+TK-031,C0031,I cannot log in because the app is throwing an error.,technical,2025-01-31 00:00:00
+TK-032,C0032,Someone used my account to make a purchase and I need help.,fraud,2025-02-01 00:00:00
+TK-033,C0033,Refund not showing on my card after a recent order.,billing,2025-02-02 00:00:00
+TK-034,C0034,,delivery,2025-02-03 00:00:00
+TK-035,C0035,word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word,technical,2025-02-04 00:00:00
+TK-036,C0036,I see an unusual duplicate charge on my account.,fraud,2025-02-05 00:00:00
+TK-037,C0037,Order ORD-123456 was delivered but no refund appears.,billing,2025-02-06 00:00:00
+TK-038,C0038,Delivery is delayed and the estimate is wrong.,delivery,2025-02-07 00:00:00
+TK-039,C0039,I cannot log in because the app is throwing an error.,technical,2025-02-08 00:00:00
+TK-040,C0040,Someone used my account to make a purchase and I need help.,fraud,2025-02-09 00:00:00
+TK-041,C0041,Refund not showing on my card after a recent order.,billing,2025-02-10 00:00:00
+TK-042,C0042,My package arrived three days late and has not been delivered.,delivery,2025-02-11 00:00:00
+TK-043,C0043,The app crashes whenever I try to view my order details.,technical,2025-02-12 00:00:00
+TK-044,C0044,I see an unusual duplicate charge on my account.,fraud,2025-02-13 00:00:00
+TK-045,C0045,,billing,2025-02-14 00:00:00
+TK-046,C0046,Delivery is delayed and the estimate is wrong.,delivery,2025-02-15 00:00:00
+TK-047,C0047,I cannot log in because the app is throwing an error.,technical,2025-02-16 00:00:00
+TK-048,C0048,Someone used my account to make a purchase and I need help.,fraud,2025-02-17 00:00:00
+TK-049,C0049,Refund not showing on my card after a recent order.,billing,2025-02-18 00:00:00
+TK-050,C0050,My package arrived three days late and has not been delivered.,delivery,2025-02-19 00:00:00
+TK-051,C0051,The app crashes whenever I try to view my order details.,technical,2025-02-20 00:00:00
+TK-052,C0052,word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word,fraud,2025-02-21 00:00:00
+TK-053,C0053,Order ORD-123456 was delivered but no refund appears.,billing,2025-02-22 00:00:00
+TK-054,C0054,Delivery is delayed and the estimate is wrong.,delivery,2025-02-23 00:00:00
+TK-055,C0055,I cannot log in because the app is throwing an error.,technical,2025-02-24 00:00:00
+TK-056,C0056,,fraud,2025-02-25 00:00:00
+TK-057,C0057,Refund not showing on my card after a recent order.,billing,2025-02-26 00:00:00
+TK-058,C0058,My package arrived three days late and has not been delivered.,delivery,2025-02-27 00:00:00
+TK-059,C0059,"I need help with my order, please contact me at test@example.com or 9876543210.",technical,2025-02-28 00:00:00
+TK-060,C0060,I see an unusual duplicate charge on my account.,fraud,2025-03-01 00:00:00
+TK-061,C0061,Order ORD-123456 was delivered but no refund appears.,billing,2025-03-02 00:00:00
+TK-062,C0062,Delivery is delayed and the estimate is wrong.,delivery,2025-03-03 00:00:00
+TK-063,C0063,I cannot log in because the app is throwing an error.,technical,2025-03-04 00:00:00
+TK-064,C0064,Someone used my account to make a purchase and I need help.,fraud,2025-03-05 00:00:00
+TK-065,C0065,Refund not showing on my card after a recent order.,billing,2025-03-06 00:00:00
+TK-066,C0066,My package arrived three days late and has not been delivered.,delivery,2025-03-07 00:00:00
+TK-067,C0067,,technical,2025-03-08 00:00:00
+TK-068,C0068,I see an unusual duplicate charge on my account.,fraud,2025-03-09 00:00:00
+TK-069,C0069,word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word,billing,2025-03-10 00:00:00
+TK-070,C0070,Delivery is delayed and the estimate is wrong.,delivery,2025-03-11 00:00:00
+TK-071,C0071,I cannot log in because the app is throwing an error.,technical,2025-03-12 00:00:00
+TK-072,C0072,Someone used my account to make a purchase and I need help.,fraud,2025-03-13 00:00:00
+TK-073,C0073,Refund not showing on my card after a recent order.,billing,2025-03-14 00:00:00
+TK-074,C0074,My package arrived three days late and has not been delivered.,delivery,2025-03-15 00:00:00
+TK-075,C0075,The app crashes whenever I try to view my order details.,technical,2025-03-16 00:00:00
+TK-076,C0076,I see an unusual duplicate charge on my account.,fraud,2025-03-17 00:00:00
+TK-077,C0077,Order ORD-123456 was delivered but no refund appears.,billing,2025-03-18 00:00:00
+TK-078,C0078,,delivery,2025-03-19 00:00:00
+TK-079,C0079,I cannot log in because the app is throwing an error.,technical,2025-03-20 00:00:00
+TK-080,C0080,Someone used my account to make a purchase and I need help.,fraud,2025-03-21 00:00:00
+TK-081,C0081,Refund not showing on my card after a recent order.,billing,2025-03-22 00:00:00
+TK-082,C0082,My package arrived three days late and has not been delivered.,delivery,2025-03-23 00:00:00
+TK-083,C0083,The app crashes whenever I try to view my order details.,technical,2025-03-24 00:00:00
+TK-084,C0084,I see an unusual duplicate charge on my account.,fraud,2025-03-25 00:00:00
+TK-085,C0085,Order ORD-123456 was delivered but no refund appears.,billing,2025-03-26 00:00:00
+TK-086,C0086,word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word,delivery,2025-03-27 00:00:00
+TK-087,C0087,I cannot log in because the app is throwing an error.,technical,2025-03-28 00:00:00
+TK-088,C0088,"I need help with my order, please contact me at test@example.com or 9876543210.",fraud,2025-03-29 00:00:00
+TK-089,C0089,,billing,2025-03-30 00:00:00
+TK-090,C0090,My package arrived three days late and has not been delivered.,delivery,2025-03-31 00:00:00
+TK-091,C0091,The app crashes whenever I try to view my order details.,technical,2025-04-01 00:00:00
+TK-092,C0092,I see an unusual duplicate charge on my account.,fraud,2025-04-02 00:00:00
+TK-093,C0093,Order ORD-123456 was delivered but no refund appears.,billing,2025-04-03 00:00:00
+TK-094,C0094,Delivery is delayed and the estimate is wrong.,delivery,2025-04-04 00:00:00
+TK-095,C0095,I cannot log in because the app is throwing an error.,technical,2025-04-05 00:00:00
+TK-096,C0096,Someone used my account to make a purchase and I need help.,fraud,2025-04-06 00:00:00
+TK-097,C0097,Refund not showing on my card after a recent order.,billing,2025-04-07 00:00:00
+TK-098,C0098,My package arrived three days late and has not been delivered.,delivery,2025-04-08 00:00:00
+TK-099,C0099,The app crashes whenever I try to view my order details.,technical,2025-04-09 00:00:00
+TK-100,C0100,,fraud,2025-04-10 00:00:00
+TK-101,C0101,Order ORD-123456 was delivered but no refund appears.,billing,2025-04-11 00:00:00
+TK-102,C0102,Delivery is delayed and the estimate is wrong.,delivery,2025-04-12 00:00:00
+TK-103,C0103,word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word,technical,2025-04-13 00:00:00
+TK-104,C0104,Someone used my account to make a purchase and I need help.,fraud,2025-04-14 00:00:00
+TK-105,C0105,Refund not showing on my card after a recent order.,billing,2025-04-15 00:00:00
+TK-106,C0106,My package arrived three days late and has not been delivered.,delivery,2025-04-16 00:00:00
+TK-107,C0107,The app crashes whenever I try to view my order details.,technical,2025-04-17 00:00:00
+TK-108,C0108,I see an unusual duplicate charge on my account.,fraud,2025-04-18 00:00:00
+TK-109,C0109,Order ORD-123456 was delivered but no refund appears.,billing,2025-04-19 00:00:00
+TK-110,C0110,Delivery is delayed and the estimate is wrong.,delivery,2025-04-20 00:00:00
+TK-111,C0111,,technical,2025-04-21 00:00:00
+TK-112,C0112,Someone used my account to make a purchase and I need help.,fraud,2025-04-22 00:00:00
+TK-113,C0113,Refund not showing on my card after a recent order.,billing,2025-04-23 00:00:00
+TK-114,C0114,My package arrived three days late and has not been delivered.,delivery,2025-04-24 00:00:00
+TK-115,C0115,The app crashes whenever I try to view my order details.,technical,2025-04-25 00:00:00
+TK-116,C0116,I see an unusual duplicate charge on my account.,fraud,2025-04-26 00:00:00
+TK-117,C0117,"I need help with my order, please contact me at test@example.com or 9876543210.",billing,2025-04-27 00:00:00
+TK-118,C0118,Delivery is delayed and the estimate is wrong.,delivery,2025-04-28 00:00:00
+TK-119,C0119,I cannot log in because the app is throwing an error.,technical,2025-04-29 00:00:00
+TK-120,C0120,word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word,fraud,2025-04-30 00:00:00
+TK-121,C0121,Refund not showing on my card after a recent order.,billing,2025-05-01 00:00:00
+TK-122,C0122,,delivery,2025-05-02 00:00:00
+TK-123,C0123,The app crashes whenever I try to view my order details.,technical,2025-05-03 00:00:00
+TK-124,C0124,I see an unusual duplicate charge on my account.,fraud,2025-05-04 00:00:00
+TK-125,C0125,Order ORD-123456 was delivered but no refund appears.,billing,2025-05-05 00:00:00
+TK-126,C0126,Delivery is delayed and the estimate is wrong.,delivery,2025-05-06 00:00:00
+TK-127,C0127,I cannot log in because the app is throwing an error.,technical,2025-05-07 00:00:00
+TK-128,C0128,Someone used my account to make a purchase and I need help.,fraud,2025-05-08 00:00:00
+TK-129,C0129,Refund not showing on my card after a recent order.,billing,2025-05-09 00:00:00
+TK-130,C0130,My package arrived three days late and has not been delivered.,delivery,2025-05-10 00:00:00
+TK-131,C0131,The app crashes whenever I try to view my order details.,technical,2025-05-11 00:00:00
+TK-132,C0132,I see an unusual duplicate charge on my account.,fraud,2025-05-12 00:00:00
+TK-133,C0133,,billing,2025-05-13 00:00:00
+TK-134,C0134,Delivery is delayed and the estimate is wrong.,delivery,2025-05-14 00:00:00
+TK-135,C0135,I cannot log in because the app is throwing an error.,technical,2025-05-15 00:00:00
+TK-136,C0136,Someone used my account to make a purchase and I need help.,fraud,2025-05-16 00:00:00
+TK-137,C0137,word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word,billing,2025-05-17 00:00:00
+TK-138,C0138,My package arrived three days late and has not been delivered.,delivery,2025-05-18 00:00:00
+TK-139,C0139,The app crashes whenever I try to view my order details.,technical,2025-05-19 00:00:00
+TK-140,C0140,I see an unusual duplicate charge on my account.,fraud,2025-05-20 00:00:00
+TK-141,C0141,Order ORD-123456 was delivered but no refund appears.,billing,2025-05-21 00:00:00
+TK-142,C0142,Delivery is delayed and the estimate is wrong.,delivery,2025-05-22 00:00:00
+TK-143,C0143,I cannot log in because the app is throwing an error.,technical,2025-05-23 00:00:00
+TK-144,C0144,,fraud,2025-05-24 00:00:00
+TK-145,C0145,Refund not showing on my card after a recent order.,billing,2025-05-25 00:00:00
+TK-146,C0146,"I need help with my order, please contact me at test@example.com or 9876543210.",delivery,2025-05-26 00:00:00
+TK-147,C0147,The app crashes whenever I try to view my order details.,technical,2025-05-27 00:00:00
+TK-148,C0148,I see an unusual duplicate charge on my account.,fraud,2025-05-28 00:00:00
+TK-149,C0149,Order ORD-123456 was delivered but no refund appears.,billing,2025-05-29 00:00:00
+TK-150,C0150,Delivery is delayed and the estimate is wrong.,delivery,2025-05-30 00:00:00
+TK-151,C0151,I cannot log in because the app is throwing an error.,technical,2025-05-31 00:00:00
+TK-152,C0152,Someone used my account to make a purchase and I need help.,fraud,2025-06-01 00:00:00
+TK-153,C0153,Refund not showing on my card after a recent order.,billing,2025-06-02 00:00:00
+TK-154,C0154,word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word,delivery,2025-06-03 00:00:00
+TK-155,C0155,,technical,2025-06-04 00:00:00
+TK-156,C0156,I see an unusual duplicate charge on my account.,fraud,2025-06-05 00:00:00
+TK-157,C0157,Order ORD-123456 was delivered but no refund appears.,billing,2025-06-06 00:00:00
+TK-158,C0158,Delivery is delayed and the estimate is wrong.,delivery,2025-06-07 00:00:00
+TK-159,C0159,I cannot log in because the app is throwing an error.,technical,2025-06-08 00:00:00
+TK-160,C0160,Someone used my account to make a purchase and I need help.,fraud,2025-06-09 00:00:00
+TK-161,C0161,Refund not showing on my card after a recent order.,billing,2025-06-10 00:00:00
+TK-162,C0162,My package arrived three days late and has not been delivered.,delivery,2025-06-11 00:00:00
+TK-163,C0163,The app crashes whenever I try to view my order details.,technical,2025-06-12 00:00:00
+TK-164,C0164,I see an unusual duplicate charge on my account.,fraud,2025-06-13 00:00:00

@@ -1,0 +1,6 @@
+Delivery Policy
+1. Delivery slots are assigned by city and time band.
+2. Delays are measured in minutes from dispatch to customer handoff.
+3. Orders with delivery above 45 minutes may be eligible for full refund.
+4. Customers may contact support for missing deliveries.
+5. Uncompleted or cancelled orders are excluded from delivery compensation.

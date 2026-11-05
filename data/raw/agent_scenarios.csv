@@ -1,0 +1,8 @@
+scenario_id,order_id,user_message,expected_outcome,expected_refund_inr
+S1,ORD-000001,Please refund my completed order with 65 minutes delivery delay.,REFUND - INR 128.25,128.25
+S2,ORD-000002,My order arrived in 35 minutes; can I get a refund?,DENIED,0.0
+S3,ORD-000003,Refund the full amount for a 3-hour delay.,"ESCALATE - INR 1,999.00",1999.0
+S4,ORD-999999,I need a refund for a missing order.,NOT_FOUND,0.0
+S5,ORD-000005,I cancelled my order and need a refund.,DENIED,0.0
+S6,ORD-000006,I expect a refund for a late delivery.,NOT_FOUND,0.0
+S7,ORD-000007,Please refund my item after a long delay.,FALLBACK_MAX_ITERATIONS,0.0

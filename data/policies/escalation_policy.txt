@@ -1,0 +1,5 @@
+Escalation Policy
+1. Fraud and reimbursement disputes should be routed to the security team.
+2. Premium customers are routed to the premium desk.
+3. Human intervention is required for invalid outputs or empty tickets.
+4. All escalations are logged with a timestamp.

@@ -1,0 +1,4 @@
+Privacy Policy
+1. Ticket content is redacted before being sent to the model.
+2. A model must never receive email addresses, phone numbers or order IDs.
+3. Support data is stored securely and used only for support operations.

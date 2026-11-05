@@ -1,0 +1,41 @@
+product_id,product_name,category,price_inr
+P001,Smartphone,Electronics,162.73
+P002,Wireless Earbuds,Electronics,1254.18
+P003,Laptop,Electronics,851.03
+P004,Tablet,Electronics,2669.39
+P005,Gaming Console,Electronics,1086.95
+P006,Monitor,Electronics,1666.07
+P007,Keyboard,Electronics,246.31
+P008,Mouse,Electronics,1516.73
+P009,Speaker,Electronics,767.38
+P010,Smartwatch,Electronics,2935.15
+P011,Coffee Maker,Home,1869.57
+P012,Vacuum Cleaner,Home,2744.25
+P013,Air Purifier,Home,315.5
+P014,Desk Lamp,Home,2898.46
+P015,Sofa Cover,Home,174.57
+P016,Bedsheet Set,Home,1762.23
+P017,Cookware Set,Home,710.35
+P018,Mixer Grinder,Home,957.03
+P019,Microwave,Home,1507.74
+P020,Refrigerator,Home,2786.58
+P021,Rice Cooker,Home,1362.16
+P022,Crockery Set,Home,1453.67
+P023,Face Cream,Personal Care,1272.49
+P024,Shampoo,Personal Care,257.89
+P025,Hair Dryer,Personal Care,269.64
+P026,Toothpaste,Personal Care,2236.92
+P027,Soap,Personal Care,2067.51
+P028,Body Lotion,Personal Care,2732.82
+P029,Deodorant,Personal Care,1004.07
+P030,Handwash,Personal Care,265.61
+P031,Chips,Grocery,874.46
+P032,Milk,Grocery,2585.2
+P033,Rice,Grocery,1378.99
+P034,Pasta,Grocery,1142.14
+P035,Juice,Grocery,2406.39
+P036,Tea,Grocery,2451.71
+P037,Coffee,Grocery,477.74
+P038,Biscuits,Grocery,849.9
+P039,Oats,Grocery,1541.52
+P040,Spices,Grocery,475.93
