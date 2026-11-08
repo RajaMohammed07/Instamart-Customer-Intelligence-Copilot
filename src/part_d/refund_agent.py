@@ -1,129 +1,237 @@
 from __future__ import annotations
 
+import csv
 import json
 import re
-import time
-from pathlib import Path
+from datetime import date, datetime
+from typing import Any
 
-import pandas as pd
+from src.config import OUTPUTS_DIR, RAW_DIR
+from src.part_d.refund_tools import calculate_refund, escalate_to_human, get_order
 
-from src.config import OUTPUTS_DIR
-from src.part_d.checkpoint import save_checkpoint
-from src.part_d.refund_tools import calculate_refund, escalate_to_human, get_order, issue_refund, search_policy
-
-TOOL_MAP = {
-    'get_order': get_order,
-    'search_policy': search_policy,
-    'calculate_refund': calculate_refund,
-    'issue_refund': issue_refund,
-    'escalate_to_human': escalate_to_human,
-}
-
-TOOLS_SPEC = [
-    {'name': 'get_order', 'description': 'Fetch a specific order from the SQLite database.', 'parameters': {'order_id': {'type': 'string'}}},
-    {'name': 'search_policy', 'description': 'Retrieve policy text relevant to a user question.', 'parameters': {'query': {'type': 'string'}}},
-    {'name': 'calculate_refund', 'description': 'Compute the refund amount for a completed order.', 'parameters': {'order_amount': {'type': 'number'}, 'delivery_minutes': {'type': 'number'}}},
-    {'name': 'issue_refund', 'description': 'Record a standard refund issuance.', 'parameters': {'order_id': {'type': 'string'}, 'refund_inr': {'type': 'number'}}},
-    {'name': 'escalate_to_human', 'description': 'Escalate large or complex refunds to human support.', 'parameters': {'order_id': {'type': 'string'}, 'refund_inr': {'type': 'number'}}},
-]
+ASSESSMENTS_PATH = OUTPUTS_DIR / "refund_assessments.jsonl"
+ORDER_ID_PATTERN = re.compile(r"\bORD-\d{6}\b", re.IGNORECASE)
+FRAUD_TERMS = ("fraud", "unauthorized", "account takeover", "stolen account")
 
 
-def _extract_order_id(message: str):
-    match = re.search(r'ORD-\d{6}', message)
-    return match.group(0) if match else None
+def _extract_order_id(message: str) -> str | None:
+    match = ORDER_ID_PATTERN.search(message)
+    return match.group(0).upper() if match else None
 
 
-def run_agent(user_message, scenario_id, max_iterations=6, token_limit=6000, time_limit_seconds=10):
-    start = time.monotonic()
-    messages = [{'role': 'system', 'content': 'AGENT: You are a careful refund assistant. Use tools when needed.'}, {'role': 'user', 'content': user_message}]
-    steps = []
-    llm_calls = 0
-    tokens_used = 0
-    tools_done = []
-    run_id = f'{scenario_id}-{int(time.time())}'
-
-    order_id = _extract_order_id(user_message) or 'ORD-000001'
-    tool_sequence = ['get_order', 'search_policy', 'calculate_refund']
-
-    for i in range(max_iterations):
-        if time.monotonic() - start >= time_limit_seconds:
-            return {'status': 'FALLBACK_TIMEOUT', 'final_answer': 'FALLBACK_TIMEOUT: Human handoff summary created.', 'steps': steps, 'llm_calls': llm_calls, 'tokens_used': tokens_used}
-        if tokens_used >= token_limit:
-            return {'status': 'FALLBACK_TOKEN_LIMIT', 'final_answer': 'FALLBACK_TOKEN_LIMIT: Human handoff summary created.', 'steps': steps, 'llm_calls': llm_calls, 'tokens_used': tokens_used}
-
-        if i == 0:
-            order = get_order(order_id)
-            steps.append({'tool': 'get_order', 'args': {'order_id': order_id}, 'observation': order})
-            tools_done.append('get_order')
-            save_checkpoint(run_id, scenario_id, messages + [{'role': 'tool', 'content': json.dumps(order)}], tokens_used, i + 1, tools_done)
-            if order.get('error') == 'order not found':
-                return {'status': 'NOT_FOUND', 'final_answer': 'NOT_FOUND: order not found', 'steps': steps, 'llm_calls': llm_calls, 'tokens_used': tokens_used}
-            if order.get('status') != 'completed':
-                return {'status': 'DENIED', 'final_answer': 'DENIED: order is not eligible for refund', 'steps': steps, 'llm_calls': llm_calls, 'tokens_used': tokens_used}
-            tokens_used += 20
-            llm_calls += 1
-            continue
-
-        if i == 1:
-            policy = search_policy('refund policy late delivery')
-            steps.append({'tool': 'search_policy', 'args': {'query': 'refund policy late delivery'}, 'observation': policy})
-            tools_done.append('search_policy')
-            save_checkpoint(run_id, scenario_id, messages + [{'role': 'tool', 'content': json.dumps(policy)}], tokens_used, i + 1, tools_done)
-            tokens_used += 25
-            llm_calls += 1
-            continue
-
-        if i == 2:
-            refund = calculate_refund(order.get('order_amount', 0), order.get('delivery_minutes', 0))
-            steps.append({'tool': 'calculate_refund', 'args': {'order_amount': order.get('order_amount', 0), 'delivery_minutes': order.get('delivery_minutes', 0)}, 'observation': refund})
-            tools_done.append('calculate_refund')
-            save_checkpoint(run_id, scenario_id, messages + [{'role': 'tool', 'content': json.dumps(refund)}], tokens_used, i + 1, tools_done)
-            refund_value = float(refund.get('refund_inr', 0))
-            if refund_value > 1000:
-                result = escalate_to_human(order_id, refund_value)
-                steps.append({'tool': 'escalate_to_human', 'args': {'order_id': order_id, 'refund_inr': refund_value}, 'observation': result})
-                tools_done.append('escalate_to_human')
-                save_checkpoint(run_id, scenario_id, messages + [{'role': 'tool', 'content': json.dumps(result)}], tokens_used, i + 1, tools_done)
-                return {'status': 'ESCALATE', 'final_answer': f'ESCALATE: INR {refund_value:,.2f}', 'steps': steps, 'llm_calls': llm_calls, 'tokens_used': tokens_used}
-            if refund_value <= 0:
-                return {'status': 'DENIED', 'final_answer': 'DENIED: no refund due to policy', 'steps': steps, 'llm_calls': llm_calls, 'tokens_used': tokens_used}
-            result = issue_refund(order_id, refund_value)
-            steps.append({'tool': 'issue_refund', 'args': {'order_id': order_id, 'refund_inr': refund_value}, 'observation': result})
-            tools_done.append('issue_refund')
-            save_checkpoint(run_id, scenario_id, messages + [{'role': 'tool', 'content': json.dumps(result)}], tokens_used, i + 1, tools_done)
-            return {'status': 'REFUND', 'final_answer': f'REFUND: INR {refund_value:,.2f}', 'steps': steps, 'llm_calls': llm_calls, 'tokens_used': tokens_used}
-
-    return {'status': 'FALLBACK_MAX_ITERATIONS', 'final_answer': 'FALLBACK_MAX_ITERATIONS: Human handoff summary created.', 'steps': steps, 'llm_calls': llm_calls, 'tokens_used': tokens_used}
+def _as_date(value: date | str | None) -> date:
+    if value is None:
+        return date.today()
+    if isinstance(value, datetime):
+        return value.date()
+    if isinstance(value, date):
+        return value
+    return date.fromisoformat(value)
 
 
-def main():
-    OUTPUTS_DIR.mkdir(exist_ok=True)
-    scenarios_df = pd.read_csv('data/raw/agent_scenarios.csv')
-    records = []
-    for _, row in scenarios_df.iterrows():
-        scenario_id = row['scenario_id']
-        order_id = row['order_id']
-        if scenario_id == 'S7':
-            result = run_agent(row['user_message'], scenario_id, max_iterations=6, token_limit=200, time_limit_seconds=10)
-        elif scenario_id == 'S6':
-            result = run_agent(row['user_message'], scenario_id, max_iterations=6, token_limit=6000, time_limit_seconds=10)
+def _assessment(
+    status: str,
+    reason: str,
+    *,
+    refund_inr: float | None = None,
+    handoff: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    result: dict[str, Any] = {
+        "status": status,
+        "reason": reason,
+        "refund_inr": refund_inr,
+        "refund_executed": False,
+        "notification_sent": False,
+    }
+    if handoff is not None:
+        result["handoff"] = handoff
+    return result
+
+
+def evaluate_refund_request(
+    order_id: str,
+    customer_id: str | None,
+    request_text: str = "",
+    evaluation_date: date | str | None = None,
+    step_count: int = 1,
+) -> dict[str, Any]:
+    if not isinstance(step_count, int) or isinstance(step_count, bool) or step_count < 0:
+        raise ValueError("step_count must be a nonnegative integer")
+    if not ORDER_ID_PATTERN.fullmatch(order_id):
+        return _assessment("INVALID_ORDER_ID", "Provide a valid order identifier.")
+
+    lowered_request = request_text.lower()
+    if any(term in lowered_request for term in FRAUD_TERMS):
+        handoff = escalate_to_human(
+            "Potential fraud requires security review within 2 hours.",
+            "security team",
+        )
+        handoff["response_target"] = "within 2 hours"
+        return _assessment(
+            "SECURITY_HANDOFF_REQUIRED",
+            "Potential fraud must be reviewed by the security team.",
+            handoff=handoff,
+        )
+
+    if step_count >= 6:
+        handoff = escalate_to_human(
+            "The support interaction reached the 6-step human-handoff limit.",
+            "human support",
+        )
+        return _assessment(
+            "HUMAN_HANDOFF_REQUIRED",
+            "The support interaction reached the 6-step handoff limit.",
+            handoff=handoff,
+        )
+
+    if not customer_id or not customer_id.strip():
+        return _assessment(
+            "CUSTOMER_VERIFICATION_REQUIRED",
+            "Verify the customer before looking up or assessing this order.",
+        )
+
+    order = get_order(order_id, customer_id)
+    if "error" in order:
+        return _assessment(
+            "ORDER_NOT_FOUND_OR_NOT_OWNED",
+            "The order could not be verified for this customer.",
+        )
+
+    if order["status"] == "cancelled":
+        return _assessment("DENIED_CANCELLED", "Cancelled orders are not eligible for refunds.")
+    if order["status"] != "completed":
+        return _assessment("DENIED_NOT_COMPLETED", "Only completed orders can be considered.")
+
+    try:
+        completed_date = date.fromisoformat(str(order["order_ts"])[:10])
+        as_of = _as_date(evaluation_date)
+    except (TypeError, ValueError):
+        return _assessment(
+            "NEEDS_REVIEW",
+            "The order completion date or evaluation date is invalid.",
+        )
+
+    age_days = (as_of - completed_date).days
+    if age_days < 0:
+        return _assessment("NEEDS_REVIEW", "The order completion date is in the future.")
+    if age_days > 7:
+        return _assessment(
+            "DENIED_OUTSIDE_WINDOW",
+            "Refund requests must be made within 7 calendar days of completion.",
+        )
+
+    delivery_minutes = order["delivery_minutes"]
+    if delivery_minutes is None:
+        return _assessment(
+            "NEEDS_REVIEW",
+            "The database has no measured delivery time; a delay cannot be verified.",
+        )
+    try:
+        refund = calculate_refund(order["order_amount"], delivery_minutes)["refund_inr"]
+    except (TypeError, ValueError):
+        return _assessment("NEEDS_REVIEW", "The stored amount or delivery time is invalid.")
+
+    if refund == 0:
+        return _assessment(
+            "DENIED_NO_QUALIFYING_DELAY",
+            "A measured delivery time of 45 minutes or less does not qualify.",
+            refund_inr=0.0,
+        )
+    if refund > 1000:
+        handoff = escalate_to_human(
+            "Refunds above INR 1,000 require human support lead approval.",
+            "human support lead",
+        )
+        return _assessment(
+            "HUMAN_APPROVAL_REQUIRED",
+            "The measured delay qualifies, but the amount requires human approval.",
+            refund_inr=refund,
+            handoff=handoff,
+        )
+    return _assessment(
+        "REFUND_ELIGIBLE_NOT_EXECUTED",
+        "Policy eligibility is met; no refund was issued by this assistant.",
+        refund_inr=refund,
+    )
+
+
+def run_agent(
+    user_message: str,
+    scenario_id: str,
+    max_iterations: int = 6,
+    token_limit: int = 6000,
+    time_limit_seconds: int = 10,
+    customer_id: str | None = None,
+    evaluation_date: date | str | None = None,
+    step_count: int = 1,
+    order_id: str | None = None,
+) -> dict[str, Any]:
+    if not isinstance(user_message, str):
+        raise TypeError("user_message must be a string")
+    message_order_id = _extract_order_id(user_message)
+    if order_id and message_order_id and order_id.upper() != message_order_id:
+        result = _assessment(
+            "INVALID_ORDER_ID",
+            "The supplied order identifier does not match the message.",
+        )
+    else:
+        verified_order_id = message_order_id or order_id
+        if verified_order_id is None:
+            result = _assessment(
+                "MISSING_ORDER_ID",
+                "Provide an order identifier to continue.",
+            )
         else:
-            result = run_agent(row['user_message'], scenario_id, max_iterations=6, token_limit=6000, time_limit_seconds=10)
-        records.append({
-            'scenario_id': scenario_id,
-            'status': result['status'],
-            'final_answer': result['final_answer'],
-            'llm_calls': result['llm_calls'],
-            'tokens_used': result['tokens_used'],
-            'tools': [step['tool'] for step in result['steps']],
-            'arguments': [step['args'] for step in result['steps']],
-            'observations': [step['observation'] for step in result['steps']],
-        })
-    out = pd.DataFrame(records)
-    out.to_json('outputs/agent_runs.jsonl', orient='records', lines=True)
-    print('Part D complete.')
-    return out
+            result = evaluate_refund_request(
+                order_id=verified_order_id.upper(),
+                customer_id=customer_id,
+                request_text=user_message,
+                evaluation_date=evaluation_date,
+                step_count=step_count,
+            )
+    return {
+        "scenario_id": scenario_id,
+        "status": result["status"],
+        "final_answer": f"{result['status']}: {result['reason']}",
+        "assessment": result,
+        "steps": [{"tool": "assess_refund", "observation": result}],
+        "llm_calls": 0,
+        "tokens_used": 0,
+        "max_iterations": max_iterations,
+        "token_limit": token_limit,
+        "time_limit_seconds": time_limit_seconds,
+    }
 
 
-if __name__ == '__main__':
+def main() -> list[dict[str, Any]]:
+    OUTPUTS_DIR.mkdir(exist_ok=True)
+    records: list[dict[str, Any]] = []
+    with (RAW_DIR / "agent_scenarios.csv").open(
+        encoding="utf-8-sig", newline=""
+    ) as source:
+        for scenario in csv.DictReader(source):
+            result = run_agent(
+                scenario["user_message"],
+                scenario["scenario_id"],
+                evaluation_date=date.today(),
+                order_id=scenario["order_id"],
+            )
+            records.append(
+                {
+                    "scenario_id": scenario["scenario_id"],
+                    "status": result["status"],
+                    "final_answer": result["final_answer"],
+                    "refund_executed": result["assessment"]["refund_executed"],
+                    "notification_sent": result["assessment"]["notification_sent"],
+                }
+            )
+
+    with ASSESSMENTS_PATH.open("w", encoding="utf-8") as destination:
+        for record in records:
+            destination.write(json.dumps(record, sort_keys=True) + "\n")
+    print(f"Part D completed: {len(records)} refund requests assessed; no refunds executed.")
+    return records
+
+
+if __name__ == "__main__":
     main()

@@ -1,0 +1,64 @@
+{
+  "classification_status_counts": {
+    "classified_json": 150,
+    "skipped_empty": 14
+  },
+  "cleaning_decisions": {
+    "empty_messages": "Retained and routed to Human Support Lead without an LLM call.",
+    "invalid_or_missing_fields": "Retained and reported; records requiring manual attention are not silently assigned a model category.",
+    "long_messages": "Retained and routed to Human Support Lead without an LLM call.",
+    "rows_dropped": 0,
+    "true_category": "Used only for aggregate data-quality reporting; never passed to the classifier or included in ticket_triage.csv."
+  },
+  "customer_enrichment": {
+    "customers_successfully_matched": 164,
+    "lapse_prediction_coverage": 0,
+    "lapse_predictions_missing_are_not_treated_as_active": true,
+    "missing_customer_matches": 0,
+    "premium_enrichment_coverage": 164,
+    "segment_enrichment_coverage": 164,
+    "sources": {
+      "diagnostics_source_available": true,
+      "invalid_customer_lapse_predictions": 0,
+      "lapse_prediction_threshold": 0.5,
+      "lapse_probability_source": "outputs/retention_list.csv",
+      "retention_list_source_available": true,
+      "segment_customers": 1200,
+      "segment_source_available": true,
+      "valid_customer_lapse_predictions": 10
+    },
+    "total_tickets": 164
+  },
+  "duplicate_ticket_id_rows": 0,
+  "empty_messages": 14,
+  "exact_duplicate_rows": 0,
+  "fields": [
+    "ticket_id",
+    "customer_id",
+    "text",
+    "true_category",
+    "created_at"
+  ],
+  "invalid_true_categories": 0,
+  "long_messages_over_400_tokens": 0,
+  "missing_customer_ids": 0,
+  "missing_or_invalid_timestamps": 0,
+  "missing_ticket_ids": 0,
+  "predicted_category_counts": {
+    "billing": 49,
+    "delivery": 33,
+    "fraud": 34,
+    "technical": 34,
+    "unknown": 14
+  },
+  "records_written": 164,
+  "source": "data/raw/tickets.csv",
+  "total_records": 164,
+  "true_category_counts": {
+    "billing": 41,
+    "delivery": 41,
+    "fraud": 41,
+    "technical": 41
+  },
+  "unknown_customer_ids": 0
+}

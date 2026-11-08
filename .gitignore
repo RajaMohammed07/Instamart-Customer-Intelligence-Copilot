@@ -1,4 +1,30 @@
-.env
+# Virtual environments
+.venv/
 venv/
+
+# Python bytecode and caches
 __pycache__/
-*.pyc
+*.py[cod]
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Temporary and editor swap files
+*.tmp
+*.csv.tmp
+*.json.tmp
+*.temp
+*.swp
+*~
+
+# Local editor and operating-system metadata
+.idea/
+.vs/
+.vscode/*.log
+.vscode/*.db
+.DS_Store
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini

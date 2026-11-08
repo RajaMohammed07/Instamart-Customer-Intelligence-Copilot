@@ -1,0 +1,12 @@
+Assignment policy rules
+1. A completed order delivered in more than 45 minutes qualifies for a full refund.
+2. A cancelled order is not charged and is not eligible for a refund.
+3. Refunds above INR 1,000 require approval from a human support lead.
+4. A refund request must be made within 7 calendar days of order completion.
+5. The normal delivery estimate is 30 minutes.
+6. The delivery estimate during rain is 60 minutes.
+7. The delivery fee is INR 25 for orders below INR 199.
+8. Fraud cases must be escalated to the security team within 2 hours.
+9. Premium customers have a response target of 1 hour.
+10. Other customers have a response target of 24 hours.
+11. A human handoff is required after 6 support steps.

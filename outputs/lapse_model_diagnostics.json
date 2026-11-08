@@ -1,0 +1,417 @@
+{
+  "cutoff": "2025-09-01",
+  "outcome_window": {
+    "start_inclusive": "2025-09-01",
+    "end_exclusive": "2025-10-01"
+  },
+  "positive_class": {
+    "value": 1,
+    "meaning": "lapsed"
+  },
+  "confusion_matrix_orientation": {
+    "rows": [
+      "actual_not_lapsed_0",
+      "actual_lapsed_1"
+    ],
+    "columns": [
+      "predicted_not_lapsed_0",
+      "predicted_lapsed_1"
+    ]
+  },
+  "split": {
+    "random_state": 42,
+    "test_size": 0.2,
+    "stratified": true,
+    "train_rows": 958,
+    "test_rows": 240,
+    "train_class_counts": {
+      "0": 759,
+      "1": 199
+    },
+    "test_class_counts": {
+      "0": 190,
+      "1": 50
+    }
+  },
+  "logistic_regression": {
+    "cv_folds": 5,
+    "scoring": "f1",
+    "candidate_C_values": [
+      0.01,
+      0.1,
+      1,
+      10,
+      100
+    ],
+    "best_params": {
+      "model__C": 0.01
+    },
+    "best_cv_f1": 0.0,
+    "cv_results": [
+      {
+        "params": {
+          "model__C": 0.01
+        },
+        "fold_f1_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean_cv_f1": 0.0,
+        "std_cv_f1": 0.0,
+        "rank": 1
+      },
+      {
+        "params": {
+          "model__C": 0.1
+        },
+        "fold_f1_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean_cv_f1": 0.0,
+        "std_cv_f1": 0.0,
+        "rank": 1
+      },
+      {
+        "params": {
+          "model__C": 1
+        },
+        "fold_f1_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean_cv_f1": 0.0,
+        "std_cv_f1": 0.0,
+        "rank": 1
+      },
+      {
+        "params": {
+          "model__C": 10
+        },
+        "fold_f1_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean_cv_f1": 0.0,
+        "std_cv_f1": 0.0,
+        "rank": 1
+      },
+      {
+        "params": {
+          "model__C": 100
+        },
+        "fold_f1_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean_cv_f1": 0.0,
+        "std_cv_f1": 0.0,
+        "rank": 1
+      }
+    ],
+    "test_metrics": {
+      "confusion_matrix": [
+        [
+          190,
+          0
+        ],
+        [
+          50,
+          0
+        ]
+      ],
+      "accuracy": 0.7916666666666666,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "specificity": 1.0,
+      "false_positive_rate": 0.0
+    }
+  },
+  "random_forest": {
+    "cv_folds": 5,
+    "scoring": "f1",
+    "candidate_max_depth": [
+      3,
+      5,
+      8
+    ],
+    "candidate_min_samples_leaf": [
+      5,
+      10,
+      20
+    ],
+    "best_params": {
+      "model__max_depth": 3,
+      "model__min_samples_leaf": 5
+    },
+    "best_cv_f1": 0.0,
+    "cv_results": [
+      {
+        "params": {
+          "model__max_depth": 3,
+          "model__min_samples_leaf": 5
+        },
+        "fold_f1_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean_cv_f1": 0.0,
+        "std_cv_f1": 0.0,
+        "rank": 1
+      },
+      {
+        "params": {
+          "model__max_depth": 3,
+          "model__min_samples_leaf": 10
+        },
+        "fold_f1_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean_cv_f1": 0.0,
+        "std_cv_f1": 0.0,
+        "rank": 1
+      },
+      {
+        "params": {
+          "model__max_depth": 3,
+          "model__min_samples_leaf": 20
+        },
+        "fold_f1_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean_cv_f1": 0.0,
+        "std_cv_f1": 0.0,
+        "rank": 1
+      },
+      {
+        "params": {
+          "model__max_depth": 5,
+          "model__min_samples_leaf": 5
+        },
+        "fold_f1_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean_cv_f1": 0.0,
+        "std_cv_f1": 0.0,
+        "rank": 1
+      },
+      {
+        "params": {
+          "model__max_depth": 5,
+          "model__min_samples_leaf": 10
+        },
+        "fold_f1_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean_cv_f1": 0.0,
+        "std_cv_f1": 0.0,
+        "rank": 1
+      },
+      {
+        "params": {
+          "model__max_depth": 5,
+          "model__min_samples_leaf": 20
+        },
+        "fold_f1_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean_cv_f1": 0.0,
+        "std_cv_f1": 0.0,
+        "rank": 1
+      },
+      {
+        "params": {
+          "model__max_depth": 8,
+          "model__min_samples_leaf": 5
+        },
+        "fold_f1_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean_cv_f1": 0.0,
+        "std_cv_f1": 0.0,
+        "rank": 1
+      },
+      {
+        "params": {
+          "model__max_depth": 8,
+          "model__min_samples_leaf": 10
+        },
+        "fold_f1_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean_cv_f1": 0.0,
+        "std_cv_f1": 0.0,
+        "rank": 1
+      },
+      {
+        "params": {
+          "model__max_depth": 8,
+          "model__min_samples_leaf": 20
+        },
+        "fold_f1_scores": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean_cv_f1": 0.0,
+        "std_cv_f1": 0.0,
+        "rank": 1
+      }
+    ],
+    "test_metrics": {
+      "confusion_matrix": [
+        [
+          190,
+          0
+        ],
+        [
+          50,
+          0
+        ]
+      ],
+      "accuracy": 0.7916666666666666,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "specificity": 1.0,
+      "false_positive_rate": 0.0
+    }
+  },
+  "baseline": {
+    "test_metrics": {
+      "confusion_matrix": [
+        [
+          190,
+          0
+        ],
+        [
+          50,
+          0
+        ]
+      ],
+      "accuracy": 0.7916666666666666,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "specificity": 1.0,
+      "false_positive_rate": 0.0
+    }
+  },
+  "feature_audit": {
+    "feature_columns": [
+      "recency",
+      "frequency",
+      "monetary",
+      "avg_discount",
+      "cancellation_rate",
+      "age",
+      "tenure_days",
+      "favourite_category",
+      "city",
+      "gender"
+    ],
+    "customer_id_in_features": false,
+    "feature_order_min": "2025-04-01 00:00:00",
+    "feature_order_max": "2025-08-31 23:53:45",
+    "feature_cutoff_exclusive": "2025-09-01T00:00:00",
+    "outcome_order_count": 1843,
+    "outcome_window_start_inclusive": "2025-09-01T00:00:00",
+    "outcome_window_end_exclusive": "2025-10-01T00:00:00",
+    "signup_tenure_negative_count": 0,
+    "signup_tenure_missing_count": 0,
+    "future_signup_count": 0,
+    "historical_attribute_limitations": "Age, city, and gender are static generated attributes without historical snapshots and are not verified as-of the cutoff.",
+    "preprocessing_fit": "ColumnTransformer is inside the GridSearchCV pipeline; each CV fold fits on its training fold.",
+    "test_data_used_for_model_selection": false
+  },
+  "model_files": {
+    "logistic_regression": "lapse_model.joblib",
+    "random_forest": "lapse_forest_model.joblib",
+    "oversampled_logistic": "lapse_oversampled_logistic_model.joblib"
+  },
+  "oversampling": {
+    "training_only": true,
+    "replacement": true,
+    "random_state": 42,
+    "before_class_counts": {
+      "0": 759,
+      "1": 199
+    },
+    "after_class_counts": {
+      "0": 759,
+      "1": 759
+    },
+    "original_test_rows": 240,
+    "test_rows_after_sampling": 240,
+    "test_metrics": {
+      "confusion_matrix": [
+        [
+          103,
+          87
+        ],
+        [
+          23,
+          27
+        ]
+      ],
+      "accuracy": 0.5416666666666666,
+      "precision": 0.23684210526315788,
+      "recall": 0.54,
+      "f1": 0.32926829268292684,
+      "specificity": 0.5421052631578948,
+      "false_positive_rate": 0.45789473684210524
+    },
+    "test_set_modified": false
+  },
+  "test_predictions_file": "lapse_test_predictions.csv",
+  "customer_identifiers_in_diagnostics": false
+}

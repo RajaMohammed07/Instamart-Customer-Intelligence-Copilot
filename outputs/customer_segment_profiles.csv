@@ -1,0 +1,4 @@
+segment_id,segment_name,customers,recency,frequency,monetary,premium_customers,business_action
+0,Steady Shoppers,581,12.68330464716007,8.051635111876076,27134.0987091222,0,Encourage repeat orders with relevant cross-sell recommendations.
+1,At-Risk Shoppers,178,52.17977528089887,7.044943820224719,25042.505842696628,0,Use a timely win-back offer and investigate recent inactivity.
+2,High-Value Regulars,441,12.235827664399093,12.467120181405896,48980.02287981859,145,Reward loyalty and protect with personalized service.

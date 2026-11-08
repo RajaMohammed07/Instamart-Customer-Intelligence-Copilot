@@ -1,0 +1,251 @@
+{
+  "title": "Minimal date correction: data preservation and Part A validation",
+  "source_snapshot": "Tracked HEAD raw customers.csv, orders.csv, and products.csv, backed up before correction.",
+  "transformation": {
+    "orders": "Monotone linear mapping of distinct source timestamps into 2025-04-01 00:00:00 through 2025-09-30 23:59:59; all rows sharing a source timestamp retain the same mapped timestamp.",
+    "signup_dates": "Separate random.Random seed 43; discrete uniform integer lead time 0-365 days before each customer's first non-pending order.",
+    "only_corrected_fields": {
+      "orders": [
+        "order_ts"
+      ],
+      "customers": [
+        "signup_date"
+      ],
+      "products": []
+    }
+  },
+  "preservation": {
+    "row_counts": {
+      "orders": {
+        "source": 13084,
+        "corrected": 13084
+      },
+      "customers": {
+        "source": 1200,
+        "corrected": 1200
+      },
+      "products": {
+        "source": 40,
+        "corrected": 40
+      }
+    },
+    "order_non_date_columns_exact": true,
+    "order_non_date_columns_checked": [
+      "order_id",
+      "customer_id",
+      "product_id",
+      "quantity",
+      "discount_pct",
+      "status",
+      "order_amount",
+      "delivery_minutes"
+    ],
+    "customer_non_date_columns_exact": true,
+    "customer_non_date_columns_checked": [
+      "customer_id",
+      "city",
+      "gender",
+      "age"
+    ],
+    "all_product_fields_exact": true,
+    "order_order_id_status_groups_exact": true,
+    "status_counts_exact": true,
+    "exact_duplicate_rows": {
+      "source": 656,
+      "corrected": 656,
+      "equal": true
+    },
+    "distinct_timestamp_order_preserved": true,
+    "sha256": {
+      "source_orders": "ab059e9b256ea6f68808bdf3770a17848f798e7cb0582320862de5e850b4e1e5",
+      "corrected_orders": "989c1007dacd350177a03df0021c3b5b115ab96ea102ad1b6c69daab210b716c",
+      "source_customers": "024dd921e855f7f035dfdb9a1f959cbe041824a03d7c46602716c8302510c0f4",
+      "corrected_customers": "2fbd0ad15d420aefb8d1931343cacdb89521d0bf25975ed6179cc12b212d2c59",
+      "source_products": "1a9d36f2a30963fc4ec91aa9fdc4fbe9eee4eefc822d280c7432db07dd8f6322",
+      "corrected_products": "1a9d36f2a30963fc4ec91aa9fdc4fbe9eee4eefc822d280c7432db07dd8f6322",
+      "line_endings_normalized": true
+    },
+    "all_required_checks_passed": true,
+    "repeated_order_id_rows_after_exact_dedup": {
+      "source": 119,
+      "corrected": 119,
+      "equal": true
+    },
+    "pending_status_rows": {
+      "source": 662,
+      "corrected": 662,
+      "equal": true
+    }
+  },
+  "dates": {
+    "source_order_range": [
+      "2024-01-01 00:12:00",
+      "2024-12-31 22:50:00"
+    ],
+    "corrected_order_range": [
+      "2025-04-01 00:00:00",
+      "2025-09-30 23:59:59"
+    ],
+    "all_orders_in_required_window": true,
+    "source_signup_range": [
+      "2021-01-01",
+      "2037-06-10"
+    ],
+    "corrected_signup_range": [
+      "2024-04-04",
+      "2025-08-02"
+    ],
+    "signup_lead_days": {
+      "min": 0,
+      "max": 365,
+      "mean": 178.1375,
+      "all_within_0_365": true
+    },
+    "signup_after_first_non_pending_order": 0
+  },
+  "part_a": {
+    "validation_passed": true,
+    "validation_checks": [
+      {
+        "name": "Customer rows preserved",
+        "passed": true
+      },
+      {
+        "name": "Exactly the six supported cities",
+        "passed": true
+      },
+      {
+        "name": "Gender values standardized",
+        "passed": true
+      },
+      {
+        "name": "Customer ages present and in range 18-60",
+        "passed": true
+      },
+      {
+        "name": "Signup dates parsed",
+        "passed": true
+      },
+      {
+        "name": "Order dates within 2025-04-01 through 2025-09-30",
+        "passed": true
+      },
+      {
+        "name": "Signup date on or before first order",
+        "passed": true
+      },
+      {
+        "name": "Eligible customer tenure nonnegative at lapse cutoff",
+        "passed": true
+      },
+      {
+        "name": "Clean orders match distinct raw order IDs",
+        "passed": true
+      },
+      {
+        "name": "Order IDs unique",
+        "passed": true
+      },
+      {
+        "name": "Allowed final statuses only",
+        "passed": true
+      },
+      {
+        "name": "Order amounts present",
+        "passed": true
+      },
+      {
+        "name": "Order timestamps use YYYY-MM-DD HH:MM:SS",
+        "passed": true
+      },
+      {
+        "name": "Negative delivery times removed",
+        "passed": true
+      },
+      {
+        "name": "Missing completed delivery values limited to categories without source measurements",
+        "passed": true
+      },
+      {
+        "name": "Cancelled orders retain missing delivery times",
+        "passed": true
+      },
+      {
+        "name": "Product lookup resolved",
+        "passed": true
+      },
+      {
+        "name": "SQLite tables created",
+        "passed": true
+      },
+      {
+        "name": "SQLite order timestamps stored as text",
+        "passed": true
+      }
+    ],
+    "clean_order_status_counts": {
+      "completed": 11430,
+      "pending": 662,
+      "cancelled": 217
+    },
+    "clean_completed_order_count": 11430,
+    "completed_revenue_inr_calculated_from_cleaned_orders": 41822667.48,
+    "completed_orders_missing_delivery": 11430,
+    "sql_results": {
+      "Q1": {
+        "rows": 1184,
+        "customers_qualifying": 1184
+      },
+      "Q2": {
+        "rows": 24,
+        "city_category_combinations": 24,
+        "completed_revenue_inr": 41822667.48,
+        "highest_combination": {
+          "city": "Bengaluru",
+          "category": "Home",
+          "revenue_inr": 2522588.74
+        }
+      },
+      "Q3": {
+        "rows": 18,
+        "products_above_average_price": 18
+      },
+      "Q4": {
+        "rows": 0,
+        "customers_without_completed_orders": 0
+      },
+      "Q5": {
+        "rows": 566,
+        "customers_above_average_spend": 566,
+        "average_customer_spend_inr": 34852.2229
+      },
+      "Q6": {
+        "rows": 1200,
+        "rank_vs_row_number_differences": 0
+      },
+      "Q7": {
+        "rows": 183,
+        "daily_rows": 183,
+        "final_cumulative_revenue_inr": 41822667.48
+      }
+    },
+    "pandas_sql_q2_grand_total_inr": {
+      "sql": 41822667.48,
+      "pandas": 41822667.480000004,
+      "matches": true
+    },
+    "completed_amount_summary": {
+      "mean": 3659.0260262467195,
+      "median": 2708.93,
+      "skewness": 1.1327693908384102,
+      "completed_order_count": 11430,
+      "completed_revenue": 41822667.480000004
+    },
+    "raw_completed_delivery_measurements": {
+      "completed_raw_rows": 12205,
+      "valid_nonnegative_measurements": 0,
+      "blank_values": 12100,
+      "negative_values": 105
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "detected_values_masked": {
+    "emails": 6,
+    "order_ids": 16,
+    "phones": 6
+  },
+  "limitations": "Regex masking can miss unformatted, obfuscated, or nonstandard identifiers. Ordinary numbers are not masked unless they match a phone or order-ID pattern.",
+  "masking_patterns": {
+    "emails": "Email-address pattern.",
+    "order_ids": "ORD- followed by six digits.",
+    "phones": "Indian 10-digit mobile numbers, optional +91/91/0 prefix, and international phone numbers with an explicit + country prefix."
+  },
+  "messages_with_detected_pii": 22,
+  "name_detection": "No customer-name field exists in the source customer data. Free-form names are not reliably detectable by these patterns.",
+  "raw_messages_written_to_public_output": false,
+  "remaining_detected_values_in_masked_messages": {
+    "emails": 0,
+    "order_ids": 0,
+    "phones": 0
+  },
+  "total_messages": 164
+}

@@ -1,0 +1,31 @@
+{
+  "assigned_team_counts": {
+    "Billing Support": 49,
+    "Delivery Support": 33,
+    "Fraud/Security Team": 34,
+    "Human Support Lead": 14,
+    "Technical Support": 34
+  },
+  "lapse_prediction_threshold": 0.5,
+  "precedence": [
+    "Validated ticket category selects its category support team.",
+    "Fraud category routes to Fraud/Security Team.",
+    "Missing or failed classification routes to Human Support Lead.",
+    "Customer segment, premium status, and lapse prediction are context only.",
+    "Priority remains NORMAL because the ticket schema and current project design provide no severity scale or urgency rules."
+  ],
+  "predicted_category_counts": {
+    "billing": 49,
+    "delivery": 33,
+    "fraud": 34,
+    "technical": 34,
+    "unknown": 14
+  },
+  "priority_counts": {
+    "NORMAL": 164
+  },
+  "processing_status_counts": {
+    "classified_json": 150,
+    "skipped_empty": 14
+  }
+}
