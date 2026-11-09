@@ -24,6 +24,7 @@ __pycache__/
 .vs/
 .vscode/*.log
 .vscode/*.db
+.zed/
 .DS_Store
 Thumbs.db
 ehthumbs.db

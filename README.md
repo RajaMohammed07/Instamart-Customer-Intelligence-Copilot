@@ -1,8 +1,6 @@
-# Instamart Customer Intelligence & Support Copilot
+# Overview
 
-## Overview
-
-### Project Overview & Business Problem
+## Project Overview & Business Problem
 
 The Instamart Customer Intelligence & Support Copilot implements an end-to-end customer analytics and support intelligence pipeline for quick-commerce and retail operations.
 
@@ -15,7 +13,7 @@ In high-velocity retail environments, business teams must balance four critical 
 
 The system is designed for complete local reproducibility, using synthetic transactional datasets and a local deterministic mock LLM simulation (`mock_llm.py`), eliminating external network API dependencies and costs.
 
-### Features & Architecture
+## Features & Architecture
 
 The project consists of four modules:
 
@@ -26,7 +24,7 @@ The project consists of four modules:
 
 **Component Separation:** Part C (ticket triage) and Part D (refund agent) operate independently. Part D evaluates standalone scenario inquiries and does not consume Part C triaged ticket context; ticket-context integration is not implemented.
 
-### Technology Stack
+## Technology Stack
 
 | Area | Technologies |
 |---|---|
@@ -39,7 +37,7 @@ The project consists of four modules:
 | LLM Simulation | Offline deterministic keyword-matching module (`mock_llm.py`) |
 | Testing | Python standard-library unittest |
 
-### Repository Structure
+## Repository Structure
 
 ```text
 Instamart-Customer-Intelligence-Copilot/
@@ -143,21 +141,23 @@ Instamart-Customer-Intelligence-Copilot/
 │       └── refund_tools.py
 │
 └── tests/
+    ├── test_integration.py
+    ├── test_part_b.py
     ├── test_part_c.py
     └── test_part_d.py
 ```
 
 ---
 
-## Reproduce
+# Reproduce
 
-### Requirements
+## Requirements
 
 - Operating System: Windows, macOS, or Linux.
 - Python: Version 3.11 or newer (tested on Python 3.14.2).
 - SQLite: Standard-library `sqlite3`; no external SQLite server installation is required.
 
-### Environment Setup
+## Environment Setup
 
 Run the following commands from the repository root directory.
 
@@ -187,11 +187,11 @@ source venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-### Execution Instructions
+## Execution Instructions
 
 Choose one execution route depending on your workflow. Do not run the full pipeline and then repeat all component commands.
 
-#### Route 1: Full Pipeline
+### Route 1: Full Pipeline
 
 `run_project.py` executes Parts A, B, C, and D in sequence.
 
@@ -204,7 +204,7 @@ python generate_data.py
 python run_project.py
 ```
 
-#### Route 2: Individual Component Execution
+### Route 2: Individual Component Execution
 
 Use these commands when inspecting or executing a specific part.
 
@@ -248,7 +248,7 @@ Evaluates sample refund scenarios against policy rules and read-only order looku
 python -m src.part_d.refund_agent
 ```
 
-#### Route 3: Standalone Demonstrations & Safe Verification
+### Route 3: Standalone Demonstrations & Safe Verification
 
 **Standalone Policy Assistant**
 
@@ -258,25 +258,25 @@ Demonstrates grounded lexical retrieval answering policy questions with exact ci
 python -m src.part_d.policy_assistant
 ```
 
-**Automated Unit Testing**
+**Automated Testing**
 
-Executes the Part C and Part D unit tests.
+Executes the automated unit and integration tests across Parts B, C, D, and end-to-end integration:
 
 ```bash
 python -m unittest discover -s tests -p "test_*.py" -v
 ```
 
-The reported test results are 17 passing Part C tests and 18 passing Part D tests.
+The verified test suite reports 45 passing tests (5 Part B tests, 17 Part C tests, 18 Part D tests, and 5 integration tests) with 0 failures and 0 errors.
 
 ---
 
-## Part A
+# Part A
 
-### Data Foundation & Analytics Layer
+## Data Foundation & Analytics Layer
 
 Part A audits the canonical tracked CSVs, cleans them, builds SQLite tables, runs seven SQL queries, and cross-checks completed revenue with a Pandas pivot.
 
-### Observed Raw Data Audit
+## Observed Raw Data Audit
 
 | File | Rows | Columns | Observations |
 |---|---:|---:|---|
@@ -292,7 +292,7 @@ Additional order data-quality observations:
 - 106 negative delivery values.
 - 12,978 blank delivery values.
 
-### Cleaning & Validation
+## Cleaning & Validation
 
 **Preservation of Business Records**
 
@@ -329,7 +329,7 @@ Raw data contains zero usable completed-order delivery times (12,978 blank, 106 
 
 The rebuilt `data/instamart.db` passes all 19 Part A validation checkpoints.
 
-### SQL & Pandas Reconciliation
+## SQL & Pandas Reconciliation
 
 | Query | Actual Result | Assignment Reference | Status & Evidence |
 |---|---|---|---|
@@ -347,13 +347,13 @@ The Pandas `pivot_table(..., margins=True)` grand total matches SQL Q2 at exactl
 
 ---
 
-## Part B
+# Part B
 
-### RFM Segmentation & Lapse Prediction
+## RFM Segmentation & Lapse Prediction
 
 The results below are the authoritative measured results produced on the corrected SQLite database. `archive/part_b_final/` preserves the validated Part B source and output files, sealed by `SHA256SUMS.txt`.
 
-### RFM & Clustering Summary
+## RFM & Clustering Summary
 
 RFM is evaluated as of 2025-10-01 across 1,200 customers.
 
@@ -365,7 +365,7 @@ K-Means clustering was evaluated across K=2 through K=8 using standardized RFM f
 
 K=3 was selected based on the highest silhouette score (0.3497) and actionable profile separation.
 
-### Customer Segments
+## Customer Segments
 
 | Segment | Customers | Mean Recency | Mean Frequency | Mean Monetary | Premium Count | Strategic Action |
 |---|---:|---:|---:|---:|---:|---|
@@ -373,14 +373,14 @@ K=3 was selected based on the highest silhouette score (0.3497) and actionable p
 | At-Risk Shoppers | 178 | 52.18 days | 7.04 | INR 25,042.51 | 0 | Deploy win-back campaigns and investigate churn causes |
 | High-Value Regulars | 441 | 12.24 days | 12.47 | INR 48,980.02 | 145 | Reward loyalty and protect with dedicated premium support |
 
-### PCA Analysis
+## PCA Analysis
 
 PCA reduces the three standardized RFM features to two principal components explaining 92.06% of total variance:
 
 - PC1: 63.51%.
 - PC2: 28.55%.
 
-### Lapse Prediction & Modeling
+## Lapse Prediction & Modeling
 
 **Cohort & Cutoff**
 
@@ -407,7 +407,7 @@ Stratified 80/20 train/test split:
 - Training: 958 customers.
 - Testing: 240 customers.
 
-### Model Evaluation
+## Model Evaluation
 
 | Model | Test Accuracy | Precision | Recall | F1 Score | Specificity | False Positive Rate |
 |---|---:|---:|---:|---:|---:|---:|
@@ -426,13 +426,13 @@ Training-only oversampling balances training classes from 759/199 to 759/759, ra
 
 ---
 
-## Part C
+# Part C
 
-### Support Ticket Triage with Privacy & Safety Guardrails
+## Support Ticket Triage with Privacy & Safety Guardrails
 
 Part C validates and triages the synthetic records in `data/raw/tickets.csv` using the offline `mock_llm.py` and strict regex-based PII masking.
 
-### Data Quality
+## Data Quality
 
 - Total records audited: 164.
 - Duplicate rows: 0.
@@ -442,7 +442,7 @@ Part C validates and triages the synthetic records in `data/raw/tickets.csv` usi
 
 Empty messages are retained and routed to Human Support Lead.
 
-### PII Redaction
+## PII Redaction
 
 Masking covers:
 
@@ -452,19 +452,19 @@ Masking covers:
 
 Contact-shaped patterns were detected across 22 affected rows and masked prior to LLM exposure and output generation.
 
-### Classification & Guardrails
+## Classification & Guardrails
 
 Only masked text is sent to `mock_llm.chat`.
 
 A deterministic fraud safety override routes explicit security or unauthorized-purchase wording to Fraud/Security Team.
 
-### Customer Enrichment
+## Customer Enrichment
 
 Tickets are enriched with Part B customer segment and premium status.
 
 Missing lapse predictions remain unknown (0/164 coverage).
 
-### Queue Allocations
+## Queue Allocations
 
 | Support Queue | Tickets |
 |---|---:|
@@ -474,31 +474,31 @@ Missing lapse predictions remain unknown (0/164 coverage).
 | Delivery Support | 33 |
 | Human Support Lead | 14 |
 
-### Automated Tests
+## Automated Tests
 
 All 17 Part C unit tests pass.
 
 ---
 
-## Part D
+# Part D
 
-### Policy RAG & Refund Assessment Agent
+## Policy RAG & Refund Assessment Agent
 
 Part D implements local lexical retrieval and a read-only refund assessment engine.
 
-### Policy Retrieval
+## Policy Retrieval
 
 Policy text files in `data/policies/` are chunked and indexed via TF-IDF.
 
 The assistant extracts exact source excerpts and validates grounding against retrieved chunks.
 
-### Read-Only SQL Safety
+## Read-Only SQL Safety
 
 Order queries use parameterized SQL on read-only SQLite connections.
 
 Both `order_id` and verified matching `customer_id` are required. Default orders are never assumed.
 
-### Refund Policy Rules
+## Refund Policy Rules
 
 - Completed orders with delivery delay greater than 45 minutes are eligible for refund.
 - Cancelled or pending orders are not refundable.
@@ -506,7 +506,7 @@ Both `order_id` and verified matching `customer_id` are required. Default orders
 - Large refunds greater than INR 1,000 require human approval.
 - Handoff recommendations are flagged after 6 support turns or for fraud indicators.
 
-### Assessment Safeguards
+## Assessment Safeguards
 
 The engine outputs assessment recommendations to `outputs/refund_assessments.jsonl`.
 
@@ -518,15 +518,15 @@ Possible outcomes include:
 
 The system does not execute refunds, mutate financial ledgers, or send external notifications.
 
-### Automated Tests
+## Automated Tests
 
 All 18 Part D unit tests pass.
 
 ---
 
-## Limitations and Next Steps
+# Limitations and Next Steps
 
-### Known Limitations
+## Known Limitations
 
 **1. No Usable Completed-Delivery Measurements**
 
@@ -564,7 +564,7 @@ Full multi-turn conversational session tracking is not implemented.
 
 All LLM capabilities are simulated locally via `mock_llm.py` without external network API calls.
 
-### Legacy and Archival Artifacts
+## Legacy and Archival Artifacts
 
 | File | Classification | Status & Operational Role |
 |---|---|---|
@@ -574,7 +574,7 @@ All LLM capabilities are simulated locally via `mock_llm.py` without external ne
 | `outputs/refund_ledger.jsonl` | Historical / Simulated | Simulated prototype ledger entries. Preserved for auditability; no real payouts occurred. |
 | `archive/part_b_final/` | Authoritative Preservation Archive | Snapshot of Part B source code and outputs from the corrected SQLite database, sealed by `SHA256SUMS.txt`. |
 
-### Next Steps
+## Next Steps
 
 Potential future improvements include:
 
